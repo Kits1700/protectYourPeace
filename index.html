@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask the Gita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f7f4;
+      --surface: #ffffff;
+      --border: #d8e5d8;
+      --text: #1c2b1e;
+      --text-muted: #5f7462;
+      --accent: #4a7c5f;
+      --accent-light: #e8f2ec;
+      --sanskrit: #3d6650;
+    }
+
+    body {
+      font-family: 'Muli', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 48px 24px 32px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .om {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    main {
+      flex: 1;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .ask-section {
+      margin-bottom: 48px;
+    }
+
+    .ask-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .ask-box {
+      position: relative;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 18px 52px 18px 20px;
+      font-family: 'Muli', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus { border-color: var(--accent); }
+    textarea::placeholder { color: #b8c8ba; font-weight: 300; }
+
+    /* Mic button inside textarea */
+    .mic-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    .mic-btn:hover:not(:disabled) {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .mic-btn.listening {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      box-shadow: 0 0 0 4px rgba(74, 124, 95, 0.2);
+      animation: mic-pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes mic-pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(74, 124, 95, 0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(74, 124, 95, 0.08); }
+    }
+
+    .ask-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .ask-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .voice-status {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 400;
+      min-height: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-family: 'Muli', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    button:hover:not(:disabled) { opacity: 0.88; }
+    button:active:not(:disabled) { transform: scale(0.98); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* Response */
+    #response {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .verse-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .verse-header {
+      background: var(--accent-light);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .verse-ref {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Speak button in card header */
+    .speak-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      font-family: 'Muli', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .speak-btn:hover:not(:disabled) {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .speak-btn.speaking {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .speak-btn svg { flex-shrink: 0; }
+
+    .verse-body {
+      padding: 28px 28px 0;
+    }
+
+    .sanskrit-text {
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--sanskrit);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .translation-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .translation-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 -28px;
+    }
+
+    .reflection-section {
+      padding: 28px 28px 32px;
+    }
+
+    .reflection-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .reflection-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      display: none;
+      margin-bottom: 32px;
+    }
+
+    .progress-wrap.visible { display: block; }
+
+    .progress-track {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-fill.indeterminate {
+      width: 0%;
+      animation: progress-run 2.2s ease-in-out infinite;
+    }
+
+    .progress-fill.complete {
+      animation: none;
+      width: 100%;
+      transition: width 0.3s ease;
+    }
+
+    @keyframes progress-run {
+      0%   { width: 0%;  margin-left: 0%; }
+      50%  { width: 60%; margin-left: 20%; }
+      100% { width: 0%;  margin-left: 100%; }
+    }
+
+    .progress-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* Error */
+    .error-box {
+      display: none;
+      padding: 20px 24px;
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      color: #991b1b;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .error-box.visible { display: block; }
+
+    /* Previous questions */
+    .previous-q {
+      margin-bottom: 32px;
+      padding: 0 0 28px;
+    }
+
+    .previous-q-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .previous-q-text {
+      font-size: 16px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="om">ॐ</div>
+  <h1>Ask the Gita</h1>
+  <p class="subtitle">Wisdom from the Bhagavad Gita for life's questions</p>
+</header>
+
+<main>
+  <section class="ask-section">
+    <label class="ask-label" for="question">Your question</label>
+    <div class="ask-box">
+      <textarea
+        id="question"
+        placeholder="Ask anything — about purpose, fear, relationships, work, grief, meaning..."
+        rows="4"
+      ></textarea>
+      <button class="mic-btn" id="mic-btn" title="Speak your question" onclick="toggleMic()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </button>
+    </div>
+    <div class="ask-footer">
+      <div class="ask-footer-left">
+        <span class="hint">Press Ctrl + Enter to ask</span>
+        <span class="voice-status" id="voice-status"></span>
+      </div>
+      <button id="ask-btn" onclick="ask()">Seek guidance</button>
+    </div>
+  </section>
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-track">
+      <div class="progress-fill indeterminate" id="progress-fill"></div>
+    </div>
+    <div class="progress-label" id="progress-label">Finding the right verse...</div>
+  </div>
+
+  <div class="error-box" id="error"></div>
+
+  <div id="response">
+    <div class="previous-q" id="prev-q-section">
+      <div class="previous-q-label">You asked</div>
+      <div class="previous-q-text" id="prev-q-text"></div>
+    </div>
+
+    <div class="verse-card">
+      <div class="verse-header">
+        <span class="verse-ref" id="verse-ref">BG —</span>
+        <button class="speak-btn" id="speak-btn" onclick="toggleSpeak()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+          <span id="speak-label">Listen</span>
+        </button>
+      </div>
+      <div class="verse-body">
+        <div class="sanskrit-text" id="sanskrit"></div>
+        <div class="translation-label">Translation</div>
+        <div class="translation-text" id="translation"></div>
+      </div>
+      <div class="divider"></div>
+      <div class="reflection-section">
+        <div class="reflection-label">A story to understand this</div>
+        <div class="reflection-text" id="reflection"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>Rooted in the teachings of the Bhagavad Gita &nbsp;·&nbsp; Vedic wisdom for modern life</footer>
+
+<script>
+  const questionEl = document.getElementById('question');
+  const btn = document.getElementById('ask-btn');
+  const loadingEl = document.getElementById('loading');
+  const responseEl = document.getElementById('response');
+  const errorEl = document.getElementById('error');
+  const micBtn = document.getElementById('mic-btn');
+  const voiceStatus = document.getElementById('voice-status');
+  const speakBtn = document.getElementById('speak-btn');
+  const speakLabel = document.getElementById('speak-label');
+  const progressWrap = document.getElementById('progress-wrap');
+  const progressFill = document.getElementById('progress-fill');
+  const progressLabel = document.getElementById('progress-label');
+
+  questionEl.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') ask();
+  });
+
+  // ── Speech Recognition (mic input) ──────────────────────────────────────
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  let isListening = false;
+
+  if (!SpeechRecognition) {
+    micBtn.style.display = 'none';
+  } else {
+    recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = true;
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+      isListening = true;
+      micBtn.classList.add('listening');
+      voiceStatus.textContent = 'Listening…';
+    };
+
+    recognition.onresult = (e) => {
+      const transcript = Array.from(e.results)
+        .map(r => r[0].transcript)
+        .join('');
+      questionEl.value = transcript;
+
+      if (e.results[e.results.length - 1].isFinal) {
+        voiceStatus.textContent = 'Got it — press Seek Guidance or speak again';
+      }
+    };
+
+    recognition.onerror = (e) => {
+      voiceStatus.textContent = e.error === 'no-speech' ? 'No speech detected' : 'Mic error: ' + e.error;
+      stopListening();
+    };
+
+    recognition.onend = () => stopListening();
+  }
+
+  function toggleMic() {
+    if (isListening) {
+      recognition.stop();
+    } else {
+      questionEl.value = '';
+      voiceStatus.textContent = '';
+      recognition.start();
+    }
+  }
+
+  function stopListening() {
+    isListening = false;
+    micBtn.classList.remove('listening');
+  }
+
+  // ── Speech Synthesis (read aloud) ────────────────────────────────────────
+  let isSpeaking = false;
+  let currentUtterance = null;
+  let cachedVoice = null;
+
+  // Voices load async in Chrome — cache the best one once ready
+  function pickBestVoice(voices) {
+    // Prefer enhanced/neural voices (much more human-sounding on Mac)
+    const priority = [
+      'Samantha (Enhanced)',
+      'Karen (Enhanced)',
+      'Moira (Enhanced)',
+      'Tessa (Enhanced)',
+      'Samantha',
+      'Karen',
+      'Moira',
+      'Google UK English Female',
+      'Google US English',
+      'Microsoft Aria Online (Natural)',
+      'Microsoft Jenny Online (Natural)',
+    ];
+    for (const name of priority) {
+      const match = voices.find(v => v.name === name);
+      if (match) return match;
+    }
+    // Fall back to any local English female voice
+    return voices.find(v => v.lang.startsWith('en') && v.localService) || null;
+  }
+
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      cachedVoice = pickBestVoice(window.speechSynthesis.getVoices());
+    };
+  }
+  // Also try immediately in case voices are already loaded
+  cachedVoice = pickBestVoice(window.speechSynthesis.getVoices());
+
+  function toggleSpeak() {
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+
+    const translation = document.getElementById('translation').textContent;
+    const story = document.getElementById('reflection').textContent;
+    const verseRef = document.getElementById('verse-ref').textContent;
+
+    // Natural pacing: brief pause between sections using commas
+    const text = `${verseRef}. ${translation}. ${story}`;
+
+    currentUtterance = new SpeechSynthesisUtterance(text);
+    currentUtterance.lang = 'en-US';
+    currentUtterance.rate = 0.82;   // a little slower feels more contemplative
+    currentUtterance.pitch = 0.95;  // slightly lower pitch, less robotic
+    currentUtterance.volume = 1;
+
+    const voice = cachedVoice || pickBestVoice(window.speechSynthesis.getVoices());
+    if (voice) currentUtterance.voice = voice;
+
+    currentUtterance.onstart = () => setSpeaking(true);
+    currentUtterance.onend = () => setSpeaking(false);
+    currentUtterance.onerror = () => setSpeaking(false);
+
+    window.speechSynthesis.speak(currentUtterance);
+  }
+
+  function setSpeaking(on) {
+    isSpeaking = on;
+    speakBtn.classList.toggle('speaking', on);
+    speakLabel.textContent = on ? 'Stop' : 'Listen';
+  }
+
+  // ── Core ask / render ────────────────────────────────────────────────────
+  function setLoading(on) {
+    btn.disabled = on;
+    micBtn.disabled = on;
+    if (on) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      responseEl.style.display = 'none';
+      errorEl.classList.remove('visible');
+      progressFill.classList.add('indeterminate');
+      progressFill.classList.remove('complete');
+      progressLabel.textContent = 'Finding the right verse...';
+      progressWrap.classList.add('visible');
+    } else {
+      progressFill.classList.remove('indeterminate');
+      progressFill.classList.add('complete');
+      progressLabel.textContent = '';
+      setTimeout(() => progressWrap.classList.remove('visible'), 400);
+    }
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add('visible');
+  }
+
+  async function ask() {
+    const question = questionEl.value.trim();
+    if (!question) return;
+
+    if (isListening) recognition.stop();
+    voiceStatus.textContent = '';
+    setLoading(true);
+
+    try {
+      const res = await fetch('/.netlify/functions/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Server error');
+      renderResponse(question, data);
+    } catch (err) {
+      showError('Something went wrong. Please try again.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function renderResponse(question, data) {
+    document.getElementById('prev-q-text').textContent = `"${question}"`;
+    document.getElementById('verse-ref').textContent = data.verse_ref || 'BG —';
+    document.getElementById('sanskrit').textContent = data.sanskrit || '';
+    document.getElementById('translation').textContent = data.translation || '';
+    document.getElementById('reflection').textContent = data.story || '';
+
+    setSpeaking(false);
+    responseEl.style.display = 'block';
+    responseEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
