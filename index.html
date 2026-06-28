@@ -34,327 +34,167 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .om {
-      font-size: 28px;
-      color: var(--accent);
-      margin-bottom: 12px;
-      letter-spacing: 2px;
-    }
+    .om { font-size: 28px; color: var(--accent); margin-bottom: 12px; letter-spacing: 2px; }
 
     h1 {
-      font-size: 28px;
-      font-weight: 300;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 8px;
+      font-size: 28px; font-weight: 300; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 8px;
     }
 
     .subtitle {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--text-muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-size: 13px; font-weight: 300; color: var(--text-muted);
+      letter-spacing: 1.5px; text-transform: uppercase;
     }
 
     main {
-      flex: 1;
-      max-width: 720px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
+      flex: 1; max-width: 720px; width: 100%;
+      margin: 0 auto; padding: 48px 24px 80px;
     }
 
-    .ask-section {
-      margin-bottom: 48px;
-    }
+    /* ── Ask section ── */
+    .ask-section { margin-bottom: 48px; }
 
     .ask-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 14px;
+      display: block; font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 14px;
     }
 
-    .ask-box {
-      position: relative;
-    }
+    .ask-box { position: relative; }
 
     textarea {
-      width: 100%;
-      min-height: 100px;
-      padding: 18px 52px 18px 20px;
-      font-family: 'Muli', sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      resize: none;
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; min-height: 100px; padding: 18px 52px 18px 20px;
+      font-family: 'Muli', sans-serif; font-size: 16px; font-weight: 300;
+      line-height: 1.7; color: var(--text); background: var(--surface);
+      border: 1px solid var(--border); border-radius: 4px;
+      resize: none; outline: none; transition: border-color 0.2s;
     }
-
     textarea:focus { border-color: var(--accent); }
     textarea::placeholder { color: #b8c8ba; font-weight: 300; }
 
-    /* Mic button inside textarea */
     .mic-btn {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 0;
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); display: flex; align-items: center;
+      justify-content: center; cursor: pointer; padding: 0;
       transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-      font-size: 14px;
-      letter-spacing: 0;
-      text-transform: none;
-      font-weight: 400;
+      font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 400;
     }
-
-    .mic-btn:hover:not(:disabled) {
-      background: var(--accent-light);
-      border-color: var(--accent);
-      color: var(--accent);
-      opacity: 1;
-    }
-
+    .mic-btn:hover:not(:disabled) { background: var(--accent-light); border-color: var(--accent); color: var(--accent); opacity: 1; }
     .mic-btn.listening {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-      box-shadow: 0 0 0 4px rgba(74, 124, 95, 0.2);
+      background: var(--accent); border-color: var(--accent); color: white;
+      box-shadow: 0 0 0 4px rgba(74,124,95,0.2);
       animation: mic-pulse 1.2s ease-in-out infinite;
     }
-
     @keyframes mic-pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(74, 124, 95, 0.2); }
-      50% { box-shadow: 0 0 0 8px rgba(74, 124, 95, 0.08); }
+      0%,100% { box-shadow: 0 0 0 4px rgba(74,124,95,0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(74,124,95,0.08); }
     }
 
     .ask-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 14px;
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: 14px;
     }
-
-    .ask-footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hint {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 300;
-    }
-
-    .voice-status {
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 400;
-      min-height: 16px;
-      letter-spacing: 0.3px;
-    }
+    .ask-footer-left { display: flex; flex-direction: column; gap: 4px; }
+    .hint { font-size: 12px; color: var(--text-muted); font-weight: 300; }
+    .voice-status { font-size: 12px; color: var(--accent); font-weight: 400; min-height: 16px; }
 
     button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      font-family: 'Muli', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 3px;
-      cursor: pointer;
+      background: var(--accent); color: white; border: none;
+      padding: 12px 28px; font-family: 'Muli', sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; border-radius: 3px; cursor: pointer;
       transition: opacity 0.2s, transform 0.1s;
     }
-
     button:hover:not(:disabled) { opacity: 0.88; }
     button:active:not(:disabled) { transform: scale(0.98); }
     button:disabled { opacity: 0.45; cursor: not-allowed; }
 
-    /* Response */
-    #response {
+    /* ── Mode select ── */
+    #mode-select {
       display: none;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn 0.4s ease;
+      margin-bottom: 0;
+    }
+    #mode-select.visible { display: block; }
+
+    .mode-heading {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .mode-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
     }
 
-    .verse-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
+    .mode-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 24px 20px; cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      text-align: left;
+    }
+    .mode-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(74,124,95,0.08); }
+
+    .mode-card-title {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      margin-bottom: 6px; letter-spacing: 0;
+      text-transform: none;
+    }
+    .mode-card-desc {
+      font-size: 13px; font-weight: 300; color: var(--text-muted);
+      line-height: 1.6;
     }
 
-    .verse-header {
-      background: var(--accent-light);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* ── Follow-up questions ── */
+    #followup-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    #followup-section.visible { display: block; }
+
+    .followup-heading {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px;
     }
 
-    .verse-ref {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    /* Speak button in card header */
-    .speak-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 5px 12px;
-      font-family: 'Muli', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .speak-btn:hover:not(:disabled) {
-      background: var(--accent-light);
-      border-color: var(--accent);
-      color: var(--accent);
-      opacity: 1;
-    }
-
-    .speak-btn.speaking {
-      background: var(--accent-light);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .speak-btn svg { flex-shrink: 0; }
-
-    .verse-body {
-      padding: 28px 28px 0;
-    }
-
-    .sanskrit-text {
-      font-size: 18px;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--sanskrit);
-      line-height: 1.8;
+    .followup-q {
       margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
     }
 
-    .translation-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+    .followup-q-label {
+      font-size: 15px; font-weight: 300; color: var(--text);
+      line-height: 1.6; margin-bottom: 10px; display: block;
     }
 
-    .translation-text {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 28px;
+    .followup-q input {
+      width: 100%; padding: 14px 16px;
+      font-family: 'Muli', sans-serif; font-size: 15px; font-weight: 300;
+      color: var(--text); background: var(--surface);
+      border: 1px solid var(--border); border-radius: 4px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .followup-q input:focus { border-color: var(--accent); }
+    .followup-q input::placeholder { color: #b8c8ba; }
+
+    .followup-footer {
+      margin-top: 24px; display: flex; justify-content: flex-end;
     }
 
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 0 -28px;
-    }
-
-    .reflection-section {
-      padding: 28px 28px 32px;
-    }
-
-    .reflection-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .reflection-text {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--text);
-      white-space: pre-wrap;
-    }
-
-    /* Progress bar */
-    .progress-wrap {
-      display: none;
-      margin-bottom: 32px;
-    }
-
+    /* ── Progress bar ── */
+    .progress-wrap { display: none; margin-bottom: 32px; }
     .progress-wrap.visible { display: block; }
 
     .progress-track {
-      height: 2px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 16px;
+      height: 2px; background: var(--border);
+      border-radius: 2px; overflow: hidden; margin-bottom: 16px;
     }
-
     .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: width 0.4s ease;
+      height: 100%; width: 0%; background: var(--accent);
+      border-radius: 2px; transition: width 0.4s ease;
     }
-
-    .progress-fill.indeterminate {
-      width: 0%;
-      animation: progress-run 2.2s ease-in-out infinite;
-    }
-
-    .progress-fill.complete {
-      animation: none;
-      width: 100%;
-      transition: width 0.3s ease;
-    }
+    .progress-fill.indeterminate { animation: progress-run 2.2s ease-in-out infinite; }
+    .progress-fill.complete { animation: none; width: 100%; transition: width 0.3s ease; }
 
     @keyframes progress-run {
       0%   { width: 0%;  margin-left: 0%; }
@@ -363,59 +203,106 @@
     }
 
     .progress-label {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      text-align: center;
+      font-size: 12px; font-weight: 300; color: var(--text-muted);
+      letter-spacing: 1px; text-align: center;
     }
 
-    /* Error */
+    /* ── Error ── */
     .error-box {
-      display: none;
-      padding: 20px 24px;
-      background: #fff5f5;
-      border: 1px solid #fecaca;
-      border-radius: 4px;
-      color: #991b1b;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.6;
+      display: none; padding: 20px 24px;
+      background: #fff5f5; border: 1px solid #fecaca;
+      border-radius: 4px; color: #991b1b;
+      font-size: 14px; font-weight: 300; line-height: 1.6;
     }
-
     .error-box.visible { display: block; }
 
-    /* Previous questions */
-    .previous-q {
-      margin-bottom: 32px;
-      padding: 0 0 28px;
+    /* ── Response ── */
+    #response { display: none; animation: fadeIn 0.5s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
+    .previous-q { margin-bottom: 32px; padding: 0 0 0; }
     .previous-q-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .previous-q-text {
+      font-size: 16px; font-weight: 300; font-style: italic;
+      color: var(--text-muted); line-height: 1.6;
     }
 
-    .previous-q-text {
-      font-size: 16px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--text-muted);
-      line-height: 1.6;
+    .verse-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+
+    .verse-header {
+      background: var(--accent-light); border-bottom: 1px solid var(--border);
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .verse-ref {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+    }
+
+    .speak-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); padding: 5px 12px;
+      font-family: 'Muli', sans-serif; font-size: 10px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border-radius: 3px; cursor: pointer; transition: all 0.2s;
+    }
+    .speak-btn:hover:not(:disabled) { background: var(--accent-light); border-color: var(--accent); color: var(--accent); opacity: 1; }
+    .speak-btn.speaking { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+    .speak-btn svg { flex-shrink: 0; }
+
+    .verse-body { padding: 28px 28px 0; }
+
+    .sanskrit-text {
+      font-size: 18px; font-style: italic; font-weight: 300;
+      color: var(--sanskrit); line-height: 1.8;
+      margin-bottom: 20px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+    }
+
+    .translation-text {
+      font-size: 16px; font-weight: 400; line-height: 1.8;
+      color: var(--text); margin-bottom: 28px;
+    }
+
+    .divider { height: 1px; background: var(--border); margin: 0 -28px; }
+
+    .card-section { padding: 24px 28px; border-bottom: 1px solid var(--border); }
+    .card-section:last-child { border-bottom: none; padding-bottom: 32px; }
+
+    .section-text {
+      font-size: 15px; font-weight: 300; line-height: 1.9;
+      color: var(--text); white-space: pre-wrap;
+    }
+
+    /* deeper section has slightly more weight */
+    .section-text.deeper { font-weight: 300; }
+
+    .practice-text {
+      font-size: 15px; font-weight: 400; line-height: 1.8;
+      color: var(--accent); font-style: italic;
     }
 
     footer {
-      text-align: center;
-      padding: 24px;
+      text-align: center; padding: 24px;
       border-top: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 300;
-      letter-spacing: 1px;
+      font-size: 11px; color: var(--text-muted);
+      font-weight: 300; letter-spacing: 1px;
     }
   </style>
 </head>
@@ -431,11 +318,7 @@
   <section class="ask-section">
     <label class="ask-label" for="question">Your question</label>
     <div class="ask-box">
-      <textarea
-        id="question"
-        placeholder="Ask anything — about purpose, fear, relationships, work, grief, meaning..."
-        rows="4"
-      ></textarea>
+      <textarea id="question" placeholder="Ask anything — about purpose, fear, relationships, work, grief, meaning..." rows="4"></textarea>
       <button class="mic-btn" id="mic-btn" title="Speak your question" onclick="toggleMic()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
@@ -450,10 +333,35 @@
         <span class="hint">Press Ctrl + Enter to ask</span>
         <span class="voice-status" id="voice-status"></span>
       </div>
-      <button id="ask-btn" onclick="ask()">Seek guidance</button>
+      <button id="ask-btn" onclick="submitQuestion()">Seek guidance</button>
     </div>
   </section>
 
+  <!-- Mode selection -->
+  <div id="mode-select">
+    <p class="mode-heading">How would you like to explore this?</p>
+    <div class="mode-cards">
+      <div class="mode-card" onclick="chooseBrief()">
+        <div class="mode-card-title">Brief</div>
+        <div class="mode-card-desc">A verse, a translation, and a short story to make it real.</div>
+      </div>
+      <div class="mode-card" onclick="chooseDeep()">
+        <div class="mode-card-title">In Depth</div>
+        <div class="mode-card-desc">A couple of questions first, then a deeper and more personal answer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Follow-up questions (in-depth only) -->
+  <div id="followup-section">
+    <p class="followup-heading">A little more context</p>
+    <div id="followup-questions"></div>
+    <div class="followup-footer">
+      <button onclick="submitDeep()">Get guidance</button>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
   <div class="progress-wrap" id="progress-wrap">
     <div class="progress-track">
       <div class="progress-fill indeterminate" id="progress-fill"></div>
@@ -463,8 +371,9 @@
 
   <div class="error-box" id="error"></div>
 
+  <!-- Response -->
   <div id="response">
-    <div class="previous-q" id="prev-q-section">
+    <div class="previous-q">
       <div class="previous-q-label">You asked</div>
       <div class="previous-q-text" id="prev-q-text"></div>
     </div>
@@ -483,13 +392,24 @@
       </div>
       <div class="verse-body">
         <div class="sanskrit-text" id="sanskrit"></div>
-        <div class="translation-label">Translation</div>
+        <div class="section-label">Translation</div>
         <div class="translation-text" id="translation"></div>
       </div>
       <div class="divider"></div>
-      <div class="reflection-section">
-        <div class="reflection-label">A story to understand this</div>
-        <div class="reflection-text" id="reflection"></div>
+      <div class="card-section">
+        <div class="section-label">A story to understand this</div>
+        <div class="section-text" id="story"></div>
+      </div>
+      <!-- Deep-only sections, hidden for brief -->
+      <div id="deep-sections" style="display:none">
+        <div class="card-section">
+          <div class="section-label">Going deeper</div>
+          <div class="section-text deeper" id="deeper"></div>
+        </div>
+        <div class="card-section">
+          <div class="section-label">Something to try today</div>
+          <div class="practice-text" id="practice"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -498,24 +418,166 @@
 <footer>Protect your peace &nbsp;·&nbsp; Maintain your calm</footer>
 
 <script>
-  const questionEl = document.getElementById('question');
-  const btn = document.getElementById('ask-btn');
-  const loadingEl = document.getElementById('loading');
-  const responseEl = document.getElementById('response');
-  const errorEl = document.getElementById('error');
-  const micBtn = document.getElementById('mic-btn');
-  const voiceStatus = document.getElementById('voice-status');
-  const speakBtn = document.getElementById('speak-btn');
-  const speakLabel = document.getElementById('speak-label');
+  const questionEl   = document.getElementById('question');
+  const askBtn       = document.getElementById('ask-btn');
+  const micBtn       = document.getElementById('mic-btn');
+  const voiceStatus  = document.getElementById('voice-status');
+  const modeSelect   = document.getElementById('mode-select');
+  const followupSec  = document.getElementById('followup-section');
+  const followupQs   = document.getElementById('followup-questions');
   const progressWrap = document.getElementById('progress-wrap');
   const progressFill = document.getElementById('progress-fill');
-  const progressLabel = document.getElementById('progress-label');
+  const progressLabel= document.getElementById('progress-label');
+  const errorEl      = document.getElementById('error');
+  const responseEl   = document.getElementById('response');
+  const speakBtn     = document.getElementById('speak-btn');
+  const speakLabel   = document.getElementById('speak-label');
+
+  let pendingQuestion = '';
+  let fetchedFollowups = [];
 
   questionEl.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') ask();
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') submitQuestion();
   });
 
-  // ── Speech Recognition (mic input) ──────────────────────────────────────
+  // ── State helpers ────────────────────────────────────────────────────────
+  function hideAll() {
+    modeSelect.classList.remove('visible');
+    followupSec.classList.remove('visible');
+    progressWrap.classList.remove('visible');
+    errorEl.classList.remove('visible');
+    responseEl.style.display = 'none';
+  }
+
+  function setLoading(on, label = 'Finding the right verse...') {
+    askBtn.disabled = on;
+    micBtn.disabled = on;
+    if (on) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      progressFill.classList.add('indeterminate');
+      progressFill.classList.remove('complete');
+      progressLabel.textContent = label;
+      progressWrap.classList.add('visible');
+    } else {
+      progressFill.classList.remove('indeterminate');
+      progressFill.classList.add('complete');
+      setTimeout(() => progressWrap.classList.remove('visible'), 400);
+    }
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.classList.add('visible');
+  }
+
+  // ── Step 1: submit question, show mode choice ────────────────────────────
+  function submitQuestion() {
+    const q = questionEl.value.trim();
+    if (!q) return;
+    if (isListening) recognition.stop();
+    voiceStatus.textContent = '';
+    pendingQuestion = q;
+    hideAll();
+    modeSelect.classList.add('visible');
+    modeSelect.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ── Step 2a: Brief ───────────────────────────────────────────────────────
+  async function chooseBrief() {
+    hideAll();
+    setLoading(true);
+    try {
+      const data = await callAPI({ question: pendingQuestion, mode: 'brief' });
+      renderResponse(data, false);
+    } catch (e) {
+      showError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // ── Step 2b: In Depth — fetch follow-up questions ────────────────────────
+  async function chooseDeep() {
+    hideAll();
+    setLoading(true, 'Thinking of the right questions...');
+    try {
+      const data = await callAPI({ question: pendingQuestion, mode: 'followup' });
+      fetchedFollowups = data.questions || [];
+      renderFollowups(fetchedFollowups);
+    } catch (e) {
+      showError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function renderFollowups(questions) {
+    followupQs.innerHTML = '';
+    questions.forEach((q, i) => {
+      followupQs.innerHTML += `
+        <div class="followup-q">
+          <label class="followup-q-label" for="fq${i}">${q}</label>
+          <input id="fq${i}" type="text" placeholder="Your answer..." />
+        </div>`;
+    });
+    followupSec.classList.add('visible');
+    followupSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Step 3: Submit answers, get deep response ────────────────────────────
+  async function submitDeep() {
+    const answers = fetchedFollowups.map((q, i) => ({
+      q,
+      a: document.getElementById('fq' + i)?.value?.trim() || '',
+    }));
+    hideAll();
+    setLoading(true, 'Seeking a deeper answer...');
+    try {
+      const data = await callAPI({ question: pendingQuestion, mode: 'deep', answers });
+      renderResponse(data, true);
+    } catch (e) {
+      showError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // ── API call ─────────────────────────────────────────────────────────────
+  async function callAPI(body) {
+    const res = await fetch('/.netlify/functions/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || 'Server error');
+    return data;
+  }
+
+  // ── Render final response ────────────────────────────────────────────────
+  function renderResponse(data, isDeep) {
+    document.getElementById('prev-q-text').textContent = `"${pendingQuestion}"`;
+    document.getElementById('verse-ref').textContent   = data.verse_ref   || 'BG —';
+    document.getElementById('sanskrit').textContent    = data.sanskrit    || '';
+    document.getElementById('translation').textContent = data.translation || '';
+    document.getElementById('story').textContent       = data.story       || '';
+
+    const deepSections = document.getElementById('deep-sections');
+    if (isDeep) {
+      document.getElementById('deeper').textContent   = data.deeper   || '';
+      document.getElementById('practice').textContent = data.practice || '';
+      deepSections.style.display = 'block';
+    } else {
+      deepSections.style.display = 'none';
+    }
+
+    setSpeaking(false);
+    responseEl.style.display = 'block';
+    responseEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Speech Recognition ───────────────────────────────────────────────────
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let recognition = null;
   let isListening = false;
@@ -528,181 +590,75 @@
     recognition.interimResults = true;
     recognition.continuous = false;
 
-    recognition.onstart = () => {
-      isListening = true;
-      micBtn.classList.add('listening');
-      voiceStatus.textContent = 'Listening…';
-    };
-
+    recognition.onstart  = () => { isListening = true; micBtn.classList.add('listening'); voiceStatus.textContent = 'Listening...'; };
     recognition.onresult = (e) => {
-      const transcript = Array.from(e.results)
-        .map(r => r[0].transcript)
-        .join('');
-      questionEl.value = transcript;
-
-      if (e.results[e.results.length - 1].isFinal) {
-        voiceStatus.textContent = 'Got it — press Seek Guidance or speak again';
-      }
+      const t = Array.from(e.results).map(r => r[0].transcript).join('');
+      questionEl.value = t;
+      if (e.results[e.results.length - 1].isFinal) voiceStatus.textContent = 'Got it. Press Seek Guidance or speak again.';
     };
-
-    recognition.onerror = (e) => {
-      voiceStatus.textContent = e.error === 'no-speech' ? 'No speech detected' : 'Mic error: ' + e.error;
-      stopListening();
-    };
-
-    recognition.onend = () => stopListening();
+    recognition.onerror = (e) => { voiceStatus.textContent = e.error === 'no-speech' ? 'No speech detected' : 'Mic error: ' + e.error; stopListening(); };
+    recognition.onend   = () => stopListening();
   }
 
   function toggleMic() {
-    if (isListening) {
-      recognition.stop();
-    } else {
-      questionEl.value = '';
-      voiceStatus.textContent = '';
-      recognition.start();
-    }
+    if (isListening) { recognition.stop(); }
+    else { questionEl.value = ''; voiceStatus.textContent = ''; recognition.start(); }
   }
+  function stopListening() { isListening = false; micBtn.classList.remove('listening'); }
 
-  function stopListening() {
-    isListening = false;
-    micBtn.classList.remove('listening');
-  }
-
-  // ── Speech Synthesis (read aloud) ────────────────────────────────────────
+  // ── Speech Synthesis ─────────────────────────────────────────────────────
   let isSpeaking = false;
-  let currentUtterance = null;
   let cachedVoice = null;
 
-  // Voices load async in Chrome — cache the best one once ready
   function pickBestVoice(voices) {
-    // Prefer enhanced/neural voices (much more human-sounding on Mac)
     const priority = [
-      'Samantha (Enhanced)',
-      'Karen (Enhanced)',
-      'Moira (Enhanced)',
-      'Tessa (Enhanced)',
-      'Samantha',
-      'Karen',
-      'Moira',
-      'Google UK English Female',
-      'Google US English',
-      'Microsoft Aria Online (Natural)',
-      'Microsoft Jenny Online (Natural)',
+      'Samantha (Enhanced)', 'Karen (Enhanced)', 'Moira (Enhanced)', 'Tessa (Enhanced)',
+      'Samantha', 'Karen', 'Moira',
+      'Google UK English Female', 'Google US English',
+      'Microsoft Aria Online (Natural)', 'Microsoft Jenny Online (Natural)',
     ];
     for (const name of priority) {
-      const match = voices.find(v => v.name === name);
-      if (match) return match;
+      const m = voices.find(v => v.name === name);
+      if (m) return m;
     }
-    // Fall back to any local English female voice
     return voices.find(v => v.lang.startsWith('en') && v.localService) || null;
   }
 
   if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = () => {
-      cachedVoice = pickBestVoice(window.speechSynthesis.getVoices());
-    };
+    window.speechSynthesis.onvoiceschanged = () => { cachedVoice = pickBestVoice(window.speechSynthesis.getVoices()); };
   }
-  // Also try immediately in case voices are already loaded
   cachedVoice = pickBestVoice(window.speechSynthesis.getVoices());
 
   function toggleSpeak() {
-    if (isSpeaking) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-      return;
-    }
+    if (isSpeaking) { window.speechSynthesis.cancel(); setSpeaking(false); return; }
 
-    const translation = document.getElementById('translation').textContent;
-    const story = document.getElementById('reflection').textContent;
-    const verseRef = document.getElementById('verse-ref').textContent;
+    const ref   = document.getElementById('verse-ref').textContent;
+    const trans = document.getElementById('translation').textContent;
+    const story = document.getElementById('story').textContent;
+    const deeper  = document.getElementById('deeper').textContent;
+    const practice = document.getElementById('practice').textContent;
 
-    // Natural pacing: brief pause between sections using commas
-    const text = `${verseRef}. ${translation}. ${story}`;
+    const deepSections = document.getElementById('deep-sections');
+    const isDeep = deepSections.style.display !== 'none';
 
-    currentUtterance = new SpeechSynthesisUtterance(text);
-    currentUtterance.lang = 'en-US';
-    currentUtterance.rate = 0.82;   // a little slower feels more contemplative
-    currentUtterance.pitch = 0.95;  // slightly lower pitch, less robotic
-    currentUtterance.volume = 1;
+    let text = `${ref}. ${trans}. ${story}`;
+    if (isDeep && deeper) text += ` ${deeper}`;
+    if (isDeep && practice) text += ` ${practice}`;
 
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-US'; utt.rate = 0.82; utt.pitch = 0.95; utt.volume = 1;
     const voice = cachedVoice || pickBestVoice(window.speechSynthesis.getVoices());
-    if (voice) currentUtterance.voice = voice;
-
-    currentUtterance.onstart = () => setSpeaking(true);
-    currentUtterance.onend = () => setSpeaking(false);
-    currentUtterance.onerror = () => setSpeaking(false);
-
-    window.speechSynthesis.speak(currentUtterance);
+    if (voice) utt.voice = voice;
+    utt.onstart = () => setSpeaking(true);
+    utt.onend   = () => setSpeaking(false);
+    utt.onerror = () => setSpeaking(false);
+    window.speechSynthesis.speak(utt);
   }
 
   function setSpeaking(on) {
     isSpeaking = on;
     speakBtn.classList.toggle('speaking', on);
     speakLabel.textContent = on ? 'Stop' : 'Listen';
-  }
-
-  // ── Core ask / render ────────────────────────────────────────────────────
-  function setLoading(on) {
-    btn.disabled = on;
-    micBtn.disabled = on;
-    if (on) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-      responseEl.style.display = 'none';
-      errorEl.classList.remove('visible');
-      progressFill.classList.add('indeterminate');
-      progressFill.classList.remove('complete');
-      progressLabel.textContent = 'Finding the right verse...';
-      progressWrap.classList.add('visible');
-    } else {
-      progressFill.classList.remove('indeterminate');
-      progressFill.classList.add('complete');
-      progressLabel.textContent = '';
-      setTimeout(() => progressWrap.classList.remove('visible'), 400);
-    }
-  }
-
-  function showError(msg) {
-    errorEl.textContent = msg;
-    errorEl.classList.add('visible');
-  }
-
-  async function ask() {
-    const question = questionEl.value.trim();
-    if (!question) return;
-
-    if (isListening) recognition.stop();
-    voiceStatus.textContent = '';
-    setLoading(true);
-
-    try {
-      const res = await fetch('/.netlify/functions/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
-      });
-
-      const data = await res.json();
-      if (!res.ok || data.error) throw new Error(data.error || 'Server error');
-      renderResponse(question, data);
-    } catch (err) {
-      showError('Something went wrong. Please try again.');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function renderResponse(question, data) {
-    document.getElementById('prev-q-text').textContent = `"${question}"`;
-    document.getElementById('verse-ref').textContent = data.verse_ref || 'BG —';
-    document.getElementById('sanskrit').textContent = data.sanskrit || '';
-    document.getElementById('translation').textContent = data.translation || '';
-    document.getElementById('reflection').textContent = data.story || '';
-
-    setSpeaking(false);
-    responseEl.style.display = 'block';
-    responseEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 </script>
 </body>
